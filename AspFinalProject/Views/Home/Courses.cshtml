@@ -1,0 +1,64 @@
+﻿@model IEnumerable<AspFinalProject.Models.Course>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Course List</title>
+</head>
+<body>
+
+    
+    
+        <table class="table">
+            <tr>
+
+                <th>@Html.DisplayNameFor(model => model.id)</th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.semester)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.id)
+                        
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.semester)
+                    </td>
+                    <td>
+
+                        @using (Html.BeginForm("modifyCourse", "Home", FormMethod.Post))
+                        {
+
+                            <input type="hidden" value=@item.id name="c_id" />
+                            <input type="submit" value="Edit" name="edit" />
+                            <input type="submit" value="Delete" name="delete" />
+
+
+
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+﻿@using AspFinalProject.Models
+@using AspFinalProject.Helpers
+
+@model User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+
+    <style>
+        #login-div{
+            position:absolute;
+                left:40%;
+                top:40%;
+                border:1px solid #ccc;
+                padding:10px 10px;
+        }
+        .field-validation-error{
+            color:red;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <div id="login-div">
+
+        @using (Html.BeginForm("Authorize", "Login",FormMethod.Post))
+        {
+
+        <table>
+
+            <tr>
+
+                <td></td>
+                <td style="text-decoration:underline">App Name</td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+
+
+                    @Html.DropDownList("UserType", new SelectList(Enum.GetValues(typeof(WhoProperty))),
+               "Who are you?")
+
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td> @Html.LabelFor(model => model.name)</td>
+                <td>@Html.EditorFor(model => model.name)</td>
+
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(model => model.name)</td>
+            </tr>
+
+            <tr>
+                <td> @Html.LabelFor(model => model.pass)</td>
+                <td>@Html.EditorFor(model => model.pass)</td>
+
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(model => model.pass)</td>
+            </tr>
+
+
+            <tr>
+
+                <td colspan="2">
+                    <label class="field-validation-error">@Html.DisplayFor(model => model.ErroMsg)</label>
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td></td>
+                <td><input type="submit" name="name" value="Login" /></td>
+                <td><input type="submit" name="name" value="Clear" /></td>
+
+            </tr>
+
+
+        </table>
+
+
+        }
+
+    </div>
+
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+</html>

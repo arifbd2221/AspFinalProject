@@ -1,0 +1,57 @@
+﻿@Model AspFinalProject.Models.Student
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        h2>Search Student By ID</h2>
+        @using (Html.BeginForm("UpdateProfile", "StudentController", FormMethod.Post))
+        {
+            <form action="/" method="post" role="form">
+                <div class="form-group">
+                    <label for="productid">Student</label>
+                    <input type="text" name="studentid" value="" class="form-control" />
+                    <input type="submit" name="btn_search" value="Search Item" class="btn btn-primary" />
+                </div>
+            </form>
+
+        }
+
+        <hr />
+        <!-- Following    code will execute after click of search button and item found as per productid -->
+        @{
+
+            if (Model != null)
+            {
+                <table class="table table-striped" width="500px" border="1">
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Section</th>
+                        <th>Department</th>
+                    </tr>
+                    @foreach (var s in Model)
+                    {
+                        <tr>
+                            <td>@s.id</td>
+                            <td>@s.name</td>
+                            <td>@s.section</td>
+                            <td>@s.department</td>
+
+                        </tr>
+                    }
+
+                </table>
+            }
+        }
+    </div>
+</body>
+</html>

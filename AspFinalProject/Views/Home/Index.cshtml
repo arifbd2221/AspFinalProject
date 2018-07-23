@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+
+    
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DashBoard</title>
+</head>
+<body>
+
+    <a href="@Url.Action("CreateCourse","Home")">Create Course</a>
+    <a href="@Url.Action("CreateCourse","Home")">Add Student</a>
+    <a href="@Url.Action("CreateCourse","Home")">Create Teacher</a>
+    <a href="@Url.Action("AddCsTc","Home")">Add Course To Teacher</a>
+    <a href="@Url.Action("Courses","Home")">Course List</a>
+
+
+    <div>
+        <h1>Hi @Session["user_name"].ToString() Here Is your Dashboard</h1>
+        <a href="@Url.Action("logut","Login")">Logout</a>
+
+    </div>
+</body>
+</html>

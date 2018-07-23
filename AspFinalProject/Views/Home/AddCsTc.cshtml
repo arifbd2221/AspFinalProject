@@ -1,0 +1,93 @@
+﻿@Model AspFinalProject.Models.TeacherCourseList
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddCsTc</title>
+</head>
+<body>
+    <div>
+
+        @{
+
+            if (Model != null)
+            {
+                <table class="table table-striped" width="500px" border="1" style="display: inline-block;">
+                    <tr>
+                        <th>Teacher Id</th>
+                        <th>Teacher Name</th>
+                        <th>Designation</th>
+                        <th>Department</th>
+                        <th>Phone</th>
+                        <th>Gender</th>
+                        <th>Courses</th>
+                    </tr>
+                    @foreach (var s in Model.GetTeachers())
+                    {
+                    <tr>
+                        <td>@s.id</td>
+                        <td>@s.name</td>
+                        <td>@s.designation</td>
+                        <td>@s.department</td>
+                        <td>@s.phone</td>
+                        <td>@s.gender</td>
+
+                        <td>
+                            @using (Html.BeginForm("AddCourseToTeacher", "Home", FormMethod.Post))
+                            {
+
+                                @Html.DropDownList("Course", new SelectList(Model.GetCourseID()), "Courses")
+                                <input type="hidden" name="tc_id" value=@s.id />
+                                <input type="submit" value="Add">
+                            }
+                        </td>
+
+                        
+                    </tr>
+                    }
+                </table>
+            }
+        }
+
+
+    </div>
+
+    <br />
+
+    <div>
+
+        @{
+
+            if (Model != null)
+            {
+                <table class="table table-striped" width="500px" border="1" style="float: left;">
+                    <tr>
+                        <th>Course Id</th>
+                        <th>Course Name</th>
+                        <th>Semester</th>
+                        
+                    </tr>
+                    @foreach (var s in Model.GetCourses())
+                    {
+                        <tr>
+                            <td>@s.id</td>
+                            <td>@s.name</td>
+                            <td>@s.semester</td>
+                            
+                        </tr>
+                    }
+
+                </table>
+            }
+        }
+
+    </div>
+
+</body>
+</html>
